@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
-/* Variables globales */
-:root{
-    --main-color: #d3ad7f;
-    --black: black;
-    --header-bg: white; /* Color del menu cabezal*/
-    --body-bg: white; /* Color del fondo contenido */
-    --footer-bg: black; /* Color del pie de pagina */
-    --border: .1rem solid rgba(255,255,255,.3);
-}
-
 *{
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -21,65 +11,64 @@
     text-transform: capitalize;
     transition: .2s linear;
 }
-
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body siempre ocupe toda la altura de la pantalla */
+}
 html{
     font-size: 62.5%;
     overflow-x: hidden;
     scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;   
 }
-
 html::-webkit-scrollbar{
     width: .8rem;
 }
-
 html::-webkit-scrollbar-thumb{
-    background: #fff;
-    border-radius: 5rem;
+    background: red;
+    border-radius: 50rem;
 }
 
 /* -------  Header estilos del cabezal de la pagina  ------------------- */
 .header{
-    background: var(--header-bg);
+    background: white; 
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 7%;
-    border-bottom: var(--border);
+    border-bottom: .1rem solid rgba(255, 2, 2, 0.89);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
 }
-
 .header .logo img{
     height: 6rem;
 }
-
 .header .navbar a{
     margin: 0 1rem;
     font-size: 1.6rem;
-    color: var(--black);
+    color: black;
 }
-
 .header .navbar a:hover{
-    color: var(--main-color);
-    border-bottom: .1rem solid var(--main-color);
+    color: #d3ad7f;
+    border-bottom: .1rem solid #d3ad7f;
     padding-bottom: .5rem;
 }
-
 .header .icons div{
-    color: var(--black);
+    color: black;
     cursor: pointer;
     font-size: 2.5rem;
     margin-left: 2rem;
 }
-
 .header .icons div:hover{
-    color: var(--main-color);
+    color: #d3ad7f;
 }
-
 #menu-btn{
     display: none;
 }
@@ -88,22 +77,19 @@ html::-webkit-scrollbar-thumb{
     #menu-btn{
         display: inline-block;
     }
-
     .header .navbar{
         position: absolute;
         top: 100%;
         right: -100%;
-        background: var(--header-bg);
+        background: white;
         width: 30rem;
         height: calc(100vh - 9.5rem);
     }
-
     .header .navbar.active{
         right: 0;
     }
-
     .header .navbar a{
-        color: var(--black);
+        color:black;
         display: block;
         margin: 1.5rem;
         padding: .5rem;
@@ -111,32 +97,34 @@ html::-webkit-scrollbar-thumb{
     }
 }
 
-/* ------------ Body Contenido de la pagina estilos --------  */
+/* ------------ Estilos de Contenido de la pagina --------  */
+main {
+    flex: 1; /* Hace que el main ocupe el espacio disponible, empujando el footer hacia abajo */
+    padding-top: 7rem; /* Ajusta según la altura del header */
+}
 
-/* Estilos para la página de productos */
-
-/* Personalización del body */
 .productos-body {
     background-color: #f0f0f0; /* Color de fondo específico */
     color: #333; /* Color de texto estándar */
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0; 
+    padding-bottom: 15px; /* espacio entre el footer y los producots */   
 }
 
 /* Sección de productos */
 .menu {
-    padding: 2rem 7%;
+    padding: 2rem 7%;  
 }
-
 .heading {
     text-align: center;
     color: #444; /* Color del título */
     text-transform: uppercase;
-    padding-bottom: 3.5rem;
+    padding-bottom: 2rem;
     font-size: 3.5rem; /* Tamaño de la fuente del título */
+    margin-top: 5%; /*agrgacion para el footer osea el pie*/
+    
 }
-
 .heading span {
     color: #d3ad7f; /* Color especial para parte del texto */
 }
@@ -146,8 +134,9 @@ html::-webkit-scrollbar-thumb{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 2rem;
+    padding: 0 2rem; /* Añade padding lateral para mejorar la responsividad */
+    margin-top: 2%  ;
 }
-
 .box {
     background-color: #fff;
     padding: 2rem;
@@ -178,12 +167,6 @@ html::-webkit-scrollbar-thumb{
     margin-top: 0.5rem;
 }
 
-.price span {
-    color: #999;
-    text-decoration: line-through;
-    font-size: 1.5rem;
-}
-
 .btn {
     display: inline-block;
     margin-top: 1rem;
@@ -195,12 +178,20 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
 .btn:hover {
     background-color: #c2956f;
 }
 
-/* Estilos de la ventana modal */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 2.5rem; /* Reducir el tamaño de fuente para pantallas más pequeñas */
+        padding: 1rem; /* Añadir padding para evitar que el texto se corte */
+        margin-top: 25%;
+    }
+}
+
+/*------------ Estilos la ventan modal  de la modal ----------------------*/
+/*ajuste del fondo negro de la ventan */
 .modal {
     display: none;
     position: fixed;
@@ -209,22 +200,22 @@ html::-webkit-scrollbar-thumb{
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
 }
-
 .modal-content {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 1000px;
-    position: relative;
+    margin: auto;
+    padding: 60px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1500px; /* Limitar el ancho a 1500px */
+    height: 800px; /* Altura fija de 800px */
     text-align: center;
+    position: relative;
+    overflow:auto;
 }
-
-/* Botón de cerrar la modal */
 .close {
     position: absolute;
     top: 10px;
@@ -234,49 +225,227 @@ html::-webkit-scrollbar-thumb{
     cursor: pointer;
 }
 
+/*Estilos parael slider */
+.modal-body {
+    display: flex;
+}
+
+/* Estilos para el visor 3D */
+.modal-3d-viewer {
+    width: 60%; /* Ocupa el 50% del espacio */
+    height: 100%; /* Ocupar toda la altura disponible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 model-viewer {
-    width: 100%;
-    height: 500px; /* Ajusta el tamaño del visor 3D */
+    width: 200%;
+    height: 600px; /* Ajusta el tamaño del visor 3D */
+}
+
+/* Estilos para la descripción */
+ /* Ajustes para alinear texto a la izquierda */
+.description, .considerations {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.modal-description {
+    width: 45%;
+}
+.modal-description h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.modal-description p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+.modal-description span { 
+    color: black;    /*color del precio */
+}
+.modal-description .price{
+    font-size: 28px;
+    font-weight: bold;
+    color: #cc1010;
+    margin-bottom: 20px;
+}
+
+/*tabla de especificasiones---*/
+.specifications {
+    font-family: Arial, sans-serif;
+    max-width: 100%; /* Ampliar tamaño */
+    margin: 20px;
+    margin-left: 0; /* Alinear a la izquierda */
+}
+
+.specifications h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.specifications hr {
+    border: none;
+    border-top: 1px solid #333; /*color de la linea */
+    margin-bottom: 15px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5; /*color de fondo del texto*/
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.spec-title {
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+}
+
+.spec-value {
+    color: black;
+    font-size: 15px;
+}
+
+/*--- estilos del boton ------ */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.custom-button {
+    background-color: black; /* Color de fondo negro */
+    color: white; /* Texto en blanco */
+    font-family: Arial, sans-serif; /* Fuente sencilla */
+    font-weight: bold; /* Texto en negrita */
+    font-size: 14px; /* Tamaño del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    border: none; /* Sin bordes */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor cambia a puntero al pasar sobre el botón */
+    transition: transform 0.2s ease; /* Animación suave al interactuar */
+    font-size: 15px;
+    padding: 15px 150px; /* Botón más grande */
+}
+
+.custom-button:hover {
+    transform: scale(1.05); /* Agranda ligeramente el botón al pasar el mouse */
+}
+
+/*------------ Estilos para hacer que la venta modal sea responsive ----------------------*/
+
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+
+    .modal-content {
+        width: 90%; /* Reducir el ancho en pantallas pequeñas */
+        max-width: 500px; /* Ancho máximo para móviles */
+        padding: 20px; /* Reducir el padding */
+        overflow-y: auto; /* Permitir desplazamiento vertical en pantallas pequeñas */
+        margin-top: 5%;
+        height: 650px;
+        margin-top: 2%;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: column; /* Cambiar disposición a columna */
+        align-items: center; /* Centrar contenido */
+        margin-top: 3%;
+    }
+      /* Estilos del visor 3D */
+      .modal-3d-viewer {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        height: 300px; /* Altura ajustada para pantallas pequeñas */
+    }
+    model-viewer {
+        width: 100%; /* Ajustar al ancho completo del contenedor */
+        height: 100%; /* Mantener proporcional la altura */
+    }
+
+    .modal-description {
+        width: 100%; /* Usa todo el ancho */
+        text-align: left; /* Alinear el texto a la izquierda */
+    }
+
+    .modal-description h2 {
+        font-size: 20px; /* Tamaño de texto ajustado para móviles */
+    }
+
+    .modal-description .price {
+        font-size: 22px; /* Reducir ligeramente el tamaño de la fuente */
+    }
+
+    .description, .considerations {
+        font-size: 14px; /* Tamaño más pequeño para texto descriptivo */
+    }
+
+    .specifications {
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        margin: 10px 0; /* Agrega un margen para separar de otros elementos */
+    }
+
+    .specifications h3 {
+        font-size: 16px; /* Tamaño de encabezado más pequeño */
+    }
+
+    .spec-item {
+        padding: 8px; /* Reduce el relleno de las filas */
+    }
+
+    .spec-title, .spec-value {
+        font-size: 13px; /* Ajusta el tamaño del texto en la tabla */
+    }
+
+    .button-container {
+        margin-top: 20px; /* Ajusta el margen superior */
+    }
+
+    .custom-button {
+        width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+        padding: 10px; /* Reduce el tamaño del botón */
+        font-size: 14px; /* Tamaño de texto más pequeño */
+    }
 }
 
 
+/* ------------ Fin del contenido de la pagina estilos --------  */
 
 /* ------------------  Footer Pie de pagina estilos ------------ */
 .footer{
-    background: var(--footer-bg);
+    background: black; /*color de fondo */
     text-align: center;
-}
-
-.footer .share{
+    margin-top: auto;
     padding: 1rem 0;
 }
-
 .footer .share a{
     height: 5rem;
     width: 5rem;
     line-height: 5rem;
     font-size: 2rem;
     color: #fff;
-    border: var(--border);
+    border: .1rem solid rgba(143, 98, 98, 0.89);
     margin: .3rem;
     border-radius: 50%;
 }
-
 .footer .share a:hover{
-    background-color: var(--main-color);
+    background-color: #d3ad7f; /*fondo color de los iconos */
 }
-
 .footer .credit{
     font-size: 2rem;
     color: #fff;
     font-weight: lighter;
     padding: 1.5rem;
 }
-
 .footer .credit span{
-    color: var(--main-color);
+    color: #d3ad7f;  /*color del Ukun del texo */
 }
-
 .whatsapp_float {
     position: fixed;
     width: 60px;
@@ -285,19 +454,29 @@ model-viewer {
     right: 20px;
     background-color: #25d366;
     color: white;
-    border-radius: 50px;
+    border-radius: 50%;
     text-align: center;
     font-size: 30px;
     box-shadow: 2px 2px 3px #999;
     z-index: 100;
     transition: transform 0.3s ease-in-out;
+    animation: ripple 1.5s infinite;
 }
-
 .whatsapp_float i {
     margin-top: 15px;
 }
-
 .whatsapp_float:hover {
     transform: scale(1.2);
 }
 
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 25px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
